@@ -1,10 +1,22 @@
 class Solution {
 public:
     int majorityElement(vector<int>& arr) {
-        sort(arr.begin(), arr.end());
         
+        int major;
         int n = arr.size();
-        int check = ceil(n/2);        
-        return arr[check];
+        int count = 0;
+        for (int i = 0 ; i < n; i++) {
+            if (count == 0) {
+                count++;
+                major = arr[i];
+            }
+            else if(major == arr[i]){
+                count++;
+            }
+            else {
+                count --;
+            }
+        }
+        return major;
     }
 };
