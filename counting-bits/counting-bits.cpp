@@ -14,13 +14,15 @@ public:
         
         return ans;
     }
+    
+
     vector<int> countBits(int n) {
         
-        vector<int> res; 
-                
+        vector<int> res(n+1);
         for(int i = 0; i < n+1; i++) {
-            res.push_back(__builtin_popcount(i));
-        }        
+            // res.push_back(get_count(i));
+            res[i] = res[i>>1] + (i&1);
+        }
         
         return res;
     }
