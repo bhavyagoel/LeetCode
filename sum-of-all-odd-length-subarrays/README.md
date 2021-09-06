@@ -41,3 +41,6 @@ If we add all these together we get 1 + 4 + 2 + 5 + 3 + 7 + 11 + 10 + 15 = 58</p
 	<li><code>1 &lt;= arr[i] &lt;= 1000</code></li>
 </ul>
 </div>
+
+### Reference
+https://www.geeksforgeeks.org/count-of-contiguous-subarrays-possible-for-every-index-by-including-the-element-at-that-index/
