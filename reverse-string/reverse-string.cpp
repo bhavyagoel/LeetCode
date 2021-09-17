@@ -1,14 +1,19 @@
 class Solution {
 public:
+    
+    void recursiveRev(vector<char> &arr, int i , int j) {
+        if(i>j) {
+            return ;
+        }
+        
+        swap(arr[i], arr[j]); 
+        return recursiveRev(arr, ++i, --j);
+    }
+    
     void reverseString(vector<char>& s) {
         
         int n = s.size(); 
         
-        for(int i = 0 ; i < ceil(n/2); i++) {
-            char swap = s[i]; 
-            s[i] = s[n-i-1];
-            s[n-i-1] = swap;
-            
-        }
+        recursiveRev(s, 0, n-1);
     }
 };
