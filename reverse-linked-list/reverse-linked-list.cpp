@@ -10,22 +10,32 @@
  */
 class Solution {
 public:
-    ListNode* reverseList(ListNode* head) {
-        
-        ListNode *curr;
-        ListNode* prev = NULL;
-        ListNode* next = NULL;
-        
-        curr = head; 
-        while(curr){
-            next = curr->next; 
-            curr->next = prev; 
-            
-            prev = curr; 
-            curr = next;             
-            
+    ListNode * head1 = NULL;
+    
+    ListNode* recursiveReverse(ListNode *node) {
+        // cout<<"START : "<<node->val<<endl;
+        if(node == NULL) {
+            return NULL; 
+        }
+        if(node->next==NULL) {
+            // cout<<"HEAD : "<<node->val<<endl;
+            // Setting last node as head
+            head1 = node; 
+            return node;
         }
         
-        return prev;
+        ListNode* node1 = recursiveReverse(node->next); 
+        // cout<<node1->val<<" "<<node->val<<endl;
+        
+        node1->next = node;
+        node->next = NULL;
+        
+        return node;
+    }
+    
+    ListNode* reverseList(ListNode* head) {    
+
+        recursiveReverse(head);
+        return head1;
     }
 };
