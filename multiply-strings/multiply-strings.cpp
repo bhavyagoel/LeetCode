@@ -2,7 +2,7 @@ class Solution {
 public:
     
     // To multiply single number with a string
-    string multiply(char a, string s) {
+    string multiply(char &a, string &s) {
         string res = "";
         int alpha = a - '0';
         int n = s.size(); 
@@ -28,7 +28,7 @@ public:
     
     
     // Function to add two strings
-    string add2string(string s1, string s2) {
+    string add2string(string &s1, string &s2) {
         string res = ""; 
         
         int n = max(s1.size(), s2.size()); 
@@ -63,7 +63,7 @@ public:
     }
     
     // Function to add n string
-    string addNstring(vector<string> alpha) {
+    string addNstring(vector<string> &alpha) {
         string res = alpha[0];
         
         int n = alpha.size(); 
