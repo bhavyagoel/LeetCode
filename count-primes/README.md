@@ -1,4 +1,4 @@
-<h2>204. Count Primes</h2><h3>Medium</h3><hr><div><p>Given an integer <code>n</code>, return <em>the number of prime numbers that are strictly less than</em> <code>n</code>.</p>
+<h2>204. Count Primes (Sieve of Eratosthenes) </h2><h3>Medium</h3><hr><div><p>Given an integer <code>n</code>, return <em>the number of prime numbers that are strictly less than</em> <code>n</code>.</p>
 
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
