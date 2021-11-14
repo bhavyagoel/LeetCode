@@ -18,7 +18,7 @@ public:
         string temp = "";
         helper(characters, temp, 0, combinationLength);
         
-        sort(array.begin(), array.end());
+        // sort(array.begin(), array.end());
     }
     
     string next() {
