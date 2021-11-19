@@ -1,3 +1,6 @@
+https://leetcode.com/problems/2-keys-keyboard/discuss/105966/C%2B%2B-3-ms-5-lines-(prime-numbers)
+
+
 <h2>650. 2 Keys Keyboard</h2><h3>Medium</h3><hr><div><p>There is only one character <code>'A'</code> on the screen of a notepad. You can perform two operations on this notepad for each step:</p>
 
 <ul>
