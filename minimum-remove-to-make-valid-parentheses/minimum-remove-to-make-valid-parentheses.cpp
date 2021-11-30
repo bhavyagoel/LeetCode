@@ -3,11 +3,9 @@ public:
     string minRemoveToMakeValid(string s) {
         
         int n = s.length(); 
-        stack<char> temp;
         int count = 0; 
         for(int i = 0; i < n; i++) {
             if (s[i]=='('){
-                temp.push(s[i]);
                 count++;
             }
             if (s[i]==')') {
@@ -22,7 +20,6 @@ public:
         count = 0;
         for(int i = n-1; i >-1; i--) {
             if (s[i]==')'){
-                temp.push(s[i]);
                 count++;
             }
             if (s[i]=='(') {
