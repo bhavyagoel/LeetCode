@@ -8,8 +8,6 @@ public:
                 swap(nums[nums[i]-1], nums[i]);
             }
         }
-
-        
         for(int i = 0 ; i < n; i++) {
             if(nums[i] != i+1) {
                 return i+1;
@@ -18,4 +16,11 @@ public:
         
         return n+1;
     }
+    
+      // *** need this constructor to boost the speed ***  
+    Solution(){        
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
+    }
 };
+
