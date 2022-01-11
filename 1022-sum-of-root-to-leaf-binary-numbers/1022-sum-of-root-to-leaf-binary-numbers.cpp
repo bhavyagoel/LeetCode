@@ -11,27 +11,34 @@
  */
 class Solution {
 public:
+    int sumRootToLeaf(TreeNode* root, int val = 0) {
+        if (!root) return 0;
+        val = (val * 2 + root->val);
+        return root->left == root->right ? val : sumRootToLeaf(root->left, val) + sumRootToLeaf(root->right, val);
+    }
     
-    int totSum = 0; 
-    void helper(TreeNode* root, int val = 0) {
-        if(!root) return;
-        if(!root->left and !root->right) {
-            val = val<<1;
-            val = val | root->val; 
-            totSum += val;
-            return; 
-        }
+//     int totSum = 0; 
+//     void helper(TreeNode* root, int val = 0) {
+//         if(!root) return;
+//         if(!root->left and !root->right) {
+//             val = val<<1;
+//             val = val | root->val; 
+//             totSum += val;
+//             return; 
+//         }
         
-        val = val<<1;
-        val = val | root->val; 
+//         val = val<<1;
+//         val = val | root->val; 
         
-        helper(root->left, val);
-        helper(root->right, val);        
+//         helper(root->left, val);
+//         helper(root->right, val);        
         
-    }
-    int sumRootToLeaf(TreeNode* root) {
-        helper(root);
-        return totSum;
+//     }
+//     int sumRootToLeaf(TreeNode* root) {
+//         helper(root);
+//         return totSum;
                 
-    }
+//     }
 };
+
+
