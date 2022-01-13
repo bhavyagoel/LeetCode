@@ -6,37 +6,36 @@ using namespace std;
 class Solution {
   public:
   
-    static bool compare(pair<int, int> &p1, pair<int, int> &p2)
-    {
-        // if frequencies of two elements are same
-        // then the larger number should come first
-        if (p1.second == p2.second)
-        return p1.first > p2.first;
-        
-        // sort on the basis of decreasing order
-        // of frequencies
-        return p1.second > p2.second;
+    static bool comp(pair<int, int>&a, pair<int, int> &b) {
+        if(a.second == b.second) return a.first>b.first;
+        return a.second>b.second; 
     }
-
-
   
-    vector<int> topK(vector<int>& arr, int k) {
+    vector<int> topK(vector<int>& nums, int k) {
         // Code here
         
-        int n = arr.size();
-        unordered_map<int, int> um;
-        for (int i = 0; i < n; i++)
-        um[arr[i]]++;
+        sort(nums.begin(), nums.end());
+        vector<pair<int, int>> topK; 
         
-        // store the elements of 'um' in the vector 'freq_arr'
-        vector<pair<int, int> > freq_arr(um.begin(), um.end());
+        int n = nums.size(); 
+        for(int i = 0 ; i < n; i++) {
+            int curr = nums[i];
+            topK.push_back(make_pair(curr, 1));
+            while(i+1<n and nums[i+1] == curr) {
+                topK.back().second+=1;
+                i++;
+            }
+        }
         
-        // sort the vector 'freq_arr' on the basis of the
-        // 'compare' function
-        sort(freq_arr.begin(), freq_arr.end(), compare);
-        vector<int> res;
-        for (int i = 0; i < k; i++) {
-            res.push_back(freq_arr[i].first);
+        sort(topK.begin(), topK.end(), comp);
+        // for(int i = 0 ; i < topK.size(); i++) {
+        //     cout<<topK[i].first<<" "<<topK[i].second<<endl;
+        // }
+        
+       
+        vector<int> res; 
+        for(int i = 0 ; i < k; i++) {
+            res.push_back(topK[i].first);
         }
         
         return res;
