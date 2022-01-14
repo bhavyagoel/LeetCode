@@ -1,108 +1,60 @@
-enum State { q0, q1, q2, qd };
-
-class StateMachine {
-    // Store current state value.
-    State currentState;
-    // Store result formed and it's sign.
-    int result, sign;
-    
-    // Transition to state q1.
-    void toStateQ1(char& ch) {
-        sign = (ch == '-') ? -1 : 1;
-        currentState = q1;
-    }
-    
-    // Transition to state q2.
-    void toStateQ2(int digit) {
-        currentState = q2;
-        appendDigit(digit);
-    }
-    
-    // Transition to dead state qd.
-    void toStateQd() {
-        currentState = qd;
-    }
-    
-    // Append digit to result, if out of range return clamped value.
-    void appendDigit(int& digit) {
-        if ((result > INT_MAX / 10) || 
-            (result == INT_MAX / 10 && digit > INT_MAX % 10)) {
-            if (sign == 1) {
-                // If sign is 1, clamp result to INT_MAX.
-                result = INT_MAX;
-            } else {
-                // If sign is -1, clamp result to INT_MIN.
-                result = INT_MIN;
-                sign = 1;
-            }
-            
-            // When the 32-bit int range is exceeded, a dead state is reached.
-            toStateQd();
-        } else {
-            // Append current digit to the result. 
-            result = result * 10 + digit;
-        }
-    }
-
-public:
-    StateMachine() {
-        currentState = q0;
-        result = 0;
-        sign = 1;
-    }
-
-    // Change state based on current input character.
-    void transition(char& ch) {
-        if (currentState == q0) {
-            // Beginning state of the string (or some whitespaces are skipped).
-            if (ch == ' ') {
-                // Current character is a whitespaces.
-                // We stay in same state. 
-                return;
-            } else if (ch == '-' || ch == '+') {
-                // Current character is a sign.
-                toStateQ1(ch);
-            } else if (isdigit(ch)) {
-                // Current character is a digit.
-                toStateQ2(ch - '0');
-            } else {
-                // Current character is not a space/sign/digit.
-                // Reached a dead state.
-                toStateQd();
-            }
-        } else if (currentState == q1 || currentState == q2) {
-            // Previous character was a sign or digit.
-            if (isdigit(ch)) {
-                // Current character is a digit.
-                toStateQ2(ch - '0');
-            } else {
-                // Current character is not a digit.
-                // Reached a dead state.
-                toStateQd();
-            }
-        }
-    }
-    
-    // Return the final result formed with it's sign.
-    int getInteger() {
-        return sign * result;
-    }
-    
-    // Get current state.
-    State getState() {
-        return currentState;
-    }
-};
-
 class Solution {
 public:
-    int myAtoi(string s) {
-        StateMachine Q;
-        
-        for (int i = 0; i < s.size() && Q.getState() != qd; ++i) {
-            Q.transition(s[i]);
-        }
-        
-        return Q.getInteger();
+  int myAtoi(string s) {
+      
+    const int len = s.size();
+
+    if(len == 0){
+        return 0;
     }
+
+    int index = 0;
+
+    // skipping white spaces
+    while(index < len && s[index] == ' '){
+        ++index;
+    }
+
+    // to handle sign cases
+    bool isNegative = false;
+
+    if(index < len){
+
+      if(s[index] == '-'){
+        isNegative = true;
+        ++index;
+      } else if (s[index] == '+'){
+          ++index;
+      }
+
+    }
+
+    int result = 0;
+
+    // converting digit(in character form) to integer form
+    // iterate until non-digit character is not found or we can say iterate till found character is a digit
+    while(index < len && isDigit(s[index])){
+
+      /* s[index] - '0' is to convert the char digit into int digit eg: '5' - '0' --> 5
+      or else it will store the ASCII value of 5 i.e. 53,
+      so we do 53(ASCII of 5) - 48(ASCII of 0(zero)) to get 5 as int*/
+      int digit = s[index] - '0';
+
+      // to avoid integer overflow
+      if(result > (INT_MAX / 10) || (result == (INT_MAX / 10) && digit > 7)){
+          return isNegative ? INT_MIN : INT_MAX;
+      }
+
+      result = (result * 10) + digit; // adding digits at their desired place-value
+
+      ++index;
+    }
+      
+    return isNegative ? -result : result;
+  }
+    
+private:
+  bool isDigit(char ch){
+    return ch >= '0' && ch <= '9';
+  }
 };
