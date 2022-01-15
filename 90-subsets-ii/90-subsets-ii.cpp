@@ -10,16 +10,17 @@ public:
     
 private:
     vector<vector<int>> res; 
-    map<vector<int>, bool> temp; 
+    // map<vector<int>, bool> temp; 
     void subset(vector<int>& ds, int idx, vector<int>& nums, int n) {
-        
+       /** 
         if(!temp[ds]) {
             res.push_back(ds);
             temp[ds] = true;
         }
-        
+        **/
+        res.push_back(ds);
         for(int i = idx; i < n; i++) {
-            // if(i>idx and nums[i]==nums[i-1]) continue;
+            if(i>idx and nums[i]==nums[i-1]) continue;
             ds.push_back(nums[i]);
             subset(ds, i+1, nums, n);
             ds.pop_back(); 
