@@ -4,7 +4,6 @@ public:
         stack<int> stk; 
         
         int i = 0, n = a.size(); 
-        // bool topPositive; 
         while(i<n) {
             if(stk.size()==0) {
                 stk.push(a[i]);
