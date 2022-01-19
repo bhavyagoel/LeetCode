@@ -5,6 +5,7 @@ public:
     }
     
     void push(int x) {
+        /**
         while(!s1.empty()) {
             int tmp = s1.top();
             s2.push(tmp); 
@@ -16,26 +17,50 @@ public:
             s1.push(tmp);
             s2.pop();
         }
+        **/
+        input.push(x); 
         return;
     }
     
     int pop() {
-        int tmp = s1.top(); 
-        s1.pop(); 
+        if (!output.empty()) {
+            int tmp = output.top(); 
+            output.pop();
+            return tmp; 
+        }
+        while(!input.empty()) {
+            int tmp = input.top(); 
+            output.push(tmp); 
+            input.pop(); 
+        }
+        
+        int tmp = output.top(); 
+        output.pop(); 
         return tmp;
     }
     
     int peek() {
-        return s1.top(); 
+        if (!output.empty()) {
+            int tmp = output.top(); 
+            return tmp; 
+        }
+        while(!input.empty()) {
+            int tmp = input.top(); 
+            output.push(tmp); 
+            input.pop(); 
+        }
+        
+        int tmp = output.top(); 
+        return tmp;
     }
     
     bool empty() {
-        return s1.empty();
+        return output.empty() and input.empty();
     }
     
 private:
-    stack<int> s1; 
-    stack<int> s2;
+    stack<int> input; 
+    stack<int> output;
 };
 
 /**
