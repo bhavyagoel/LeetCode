@@ -10,12 +10,11 @@ public:
     }
     
     int minEatingSpeed(vector<int>& piles, int h) {
-        sort(piles.begin() , piles.end());
         
         // eat all bananas in h hours 
         int n = piles.size();
         int minSpeed = 1;       
-        int maxSpeed = piles[n-1];
+        int maxSpeed = *max_element(piles.begin(), piles.end());
         
         while(maxSpeed > minSpeed ){
             int givenSpeed = minSpeed + (maxSpeed - minSpeed)/2;
