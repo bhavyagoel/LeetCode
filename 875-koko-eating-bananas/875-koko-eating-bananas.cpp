@@ -16,16 +16,16 @@ public:
         int minSpeed = 1;       
         int maxSpeed = *max_element(piles.begin(), piles.end());
         
-        while(maxSpeed > minSpeed ){
+        while(maxSpeed >= minSpeed ){
             int givenSpeed = minSpeed + (maxSpeed - minSpeed)/2;
             if(canEat(piles , givenSpeed , h)){
-                maxSpeed = givenSpeed;
+                maxSpeed = givenSpeed-1;
             }
             else{
                 minSpeed = givenSpeed+1;
             }
         }
 
-        return maxSpeed;
+        return minSpeed;
     }
 };
