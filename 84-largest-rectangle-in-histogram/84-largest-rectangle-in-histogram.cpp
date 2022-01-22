@@ -1,5 +1,31 @@
-// BRUTE FORCE APPROACH USING NEXT SMALLER ELEMNT AND PREV SMALLER ELEMENT
+// TAKING JUST ONE ITERATION AND SINGLE STACK 
 class Solution {
+public:
+    int largestRectangleArea(vector<int>& heights) {        
+        stack<int> hist;
+        int n = heights.size(); 
+        int res = 0;         
+        for(int i = 0; i <= n; i++) {
+            while(!hist.empty() && (i==n || heights[hist.top()]>=heights[i])){
+                int hght = heights[hist.top()];
+                hist.pop(); 
+                int width;
+                if(hist.empty()) width = i; 
+                else width = i - hist.top() - 1;
+                
+                res = max(res, hght*width);
+            }
+            hist.push(i);
+        }
+        
+        return res;
+    }
+};
+
+
+
+// BRUTE FORCE APPROACH USING NEXT SMALLER ELEMNT AND PREV SMALLER ELEMENT - TC O(N)+O(N) | SC  O(N)+O(N)+O(N)
+/**class Solution {
 public:
     int largestRectangleArea(vector<int>& heights) {
         // We can start by calculating next smaller element and prev smaller element. Make sure to set their indices as the widhth would be the distance between them
@@ -36,3 +62,4 @@ public:
         return res;
     }
 };
+**/
