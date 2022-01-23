@@ -9,15 +9,14 @@ public:
             int hr = time[0]*10 + time[1];
             int min = time[2]*10 + time[3];
             
-            if(hr<24 and min<60) {
-                if(hourMax < hr) {
-                    hourMax = hr;
-                    minMax = min;
-                }
-                if (hourMax == hr and minMax<min) {
-                    minMax = min;
-                }
+            if(hourMax < hr) {
+                hourMax = hr;
+                minMax = min;
             }
+            if (hourMax == hr and minMax<min) {
+                minMax = min;
+            }
+            
         }
         if(hourMax==-1 or minMax==-1) return "";
         
@@ -37,7 +36,12 @@ private:
     vector<vector<int>> allPerm; 
     void permutate(vector<int>&arr, int idx){
         if(idx == 4){
-            allPerm.push_back(arr);
+            int hr = arr[0]*10 + arr[1];
+            int min = arr[2]*10 + arr[3];
+            
+            if(hr<24 and min<60) {
+                allPerm.push_back(arr);
+            }
             return;
         }
         
