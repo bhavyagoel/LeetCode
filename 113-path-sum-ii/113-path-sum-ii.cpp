@@ -14,35 +14,29 @@ public:
     vector<vector<int>> pathSum(TreeNode* root, int targetSum) {
         if(!root) return res;
         vector<int> temp; 
-        temp.push_back(root->val);
-        recurse(root, temp, targetSum, root->val);
+        recurse(root, temp, targetSum, 0);
         return res; 
     }
     
 private:
     vector<vector<int>> res;
     void recurse(TreeNode* root, vector<int>& temp, int tgt, int sum) {
-        if(!root->left and !root->right) {
-            if(sum==tgt) {
-                res.push_back(temp);
-            }
+        if(!root) {
             return; 
         }
         
-        if(root->left){
-            sum += root->left->val; 
-            temp.push_back(root->left->val);
+        sum += root->val; 
+        temp.push_back(root->val);
+        
+        if(!root->left and !root->right and sum==tgt) {
+            res.push_back(temp);
+        }else {
             recurse(root->left, temp, tgt, sum);
-            temp.pop_back(); 
-            sum -= root->left->val; 
-        }
-        if(root->right){
-            sum += root->right->val; 
-            temp.push_back(root->right->val);
             recurse(root->right, temp, tgt, sum);
-            temp.pop_back();
-            sum -= root->right->val; 
         }
+        
+        temp.pop_back(); 
+        sum -= root->val; 
         return;
     }
 };
