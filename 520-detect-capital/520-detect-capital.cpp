@@ -6,6 +6,6 @@ public:
            islower(word[0]) && isupper(word[i])) return false;
     }        
     return true;
-}
+    }
 
 };
