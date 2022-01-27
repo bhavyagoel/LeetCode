@@ -13,7 +13,6 @@ public:
         while(i<n or j<n) {
             if(!first[s2[j]-'a']){
                 j+=1;
-                i=j;
             }else{
                 vector<int> temp(26,0); 
                 while(j<n and first[s2[j]-'a']!=0) {
@@ -26,8 +25,8 @@ public:
                     j+=1;
                     if(temp==first) return true;
                 }                
-                i=j;
             }
+            i=j;
         }
         
         return false; 
