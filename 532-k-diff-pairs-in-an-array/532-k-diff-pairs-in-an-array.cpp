@@ -1,4 +1,28 @@
 class Solution {
+public: 
+    int findPairs(vector<int>& nums, int k) {
+        sort(nums.begin(), nums.end()); 
+        int n = nums.size(); 
+        int res = 0; 
+        if(nums.size()<2) return res; 
+
+        for(int i = 0, j = 1; j < n; j++) {
+            while(i<j and nums[j]-nums[i]>k){
+                i++;
+            }
+            if(i<j and nums[j]-nums[i]==k) {
+                res++;
+                while(i+1 < n and nums[i+1]==nums[i]) i++;
+                i++;
+            }
+        }
+
+        return res; 
+    }
+};
+
+/*
+class Solution {
 public:
     int findPairs(vector<int>& nums, int k) {
         if (k < 0) return 0;
@@ -11,6 +35,7 @@ public:
     return cnt;
     }
 };
+*/
 
 /* 
 // O(nlogn)
@@ -19,7 +44,9 @@ class Solution {
 public:
     int findPairs(vector<int>& nums, int k) {
         unordered_map<int, int> temp; 
-        sort(nums.begin(), nums.end()); 
+        sort(nums.begin(), nums.end());
+        
+        
         for(auto it : nums) cout<<it<<" ";
         cout<<endl;
         
