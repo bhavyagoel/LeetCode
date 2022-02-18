@@ -20,7 +20,6 @@ public:
             i+=1; 
         }
         
-        
         while(k and !temp.empty()){
             k -= 1; 
             temp.pop();
