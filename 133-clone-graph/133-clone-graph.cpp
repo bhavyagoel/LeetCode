@@ -35,7 +35,6 @@ public:
             while(curr--){
                 Node* here = bfs.front(); 
                 bfs.pop(); 
-                vector<Node*> insert; 
                 
                 if(!copy[here]) copy[here] = new Node(here->val); 
                 
