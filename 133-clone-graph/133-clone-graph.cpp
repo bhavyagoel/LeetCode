@@ -21,7 +21,6 @@ public:
 
 class Solution {
 public:
-    unordered_map<Node*, bool> visited; 
     unordered_map<Node*, Node*> copy; 
     
     Node* cloneGraph(Node* node) {
@@ -29,9 +28,7 @@ public:
         
         queue<Node*> bfs; 
         bfs.push(node);
-        
-        visited[node] = true; 
-                
+                    
         while(!bfs.empty()) {
             int curr = bfs.size(); 
             
@@ -43,17 +40,14 @@ public:
                 if(!copy[here]) copy[here] = new Node(here->val); 
                 
                 for(auto it : here->neighbors) {
-                    if(!copy[it]) copy[it] = new Node(it->val);
+                    if(!copy[it]) {
+                        copy[it] = new Node(it->val);
+                        bfs.push(it);
+                    }
                     
                     copy[here]->neighbors.push_back(copy[it]);                        
                 }
                     
-                for(auto it : here->neighbors) {
-                    if(!visited[it]) {
-                        bfs.push(it);
-                        visited[it] = true;
-                    }
-                }   
             }
         }
         
