@@ -31,9 +31,7 @@ public:
         bfs.push(node);
         
         visited[node] = true; 
-        
-        Node* res; 
-        
+                
         while(!bfs.empty()) {
             int curr = bfs.size(); 
             
@@ -42,9 +40,7 @@ public:
                 bfs.pop(); 
                 vector<Node*> insert; 
                 
-                if(!copy[here]) {
-                    copy[here] = new Node(here->val); 
-                }
+                if(!copy[here]) copy[here] = new Node(here->val); 
                 
                 for(auto it : here->neighbors) {
                     if(!copy[it]) copy[it] = new Node(it->val);
