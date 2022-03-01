@@ -17,20 +17,13 @@ public:
         int lh = maxDepth(root->left); 
         int rh = maxDepth(root->right);
         
+        res = max(res, lh+rh);
         return 1 + max(lh, rh); 
     }
     int res = INT_MIN;
     
     int diameterOfBinaryTree(TreeNode* root) {
-        if(!root) return 0; 
-        
-        
-        int left = maxDepth(root->left);
-        int right = maxDepth(root->right); 
-        res = max(res, left+right);
-        
-        diameterOfBinaryTree(root->left);
-        diameterOfBinaryTree(root->right);
+        maxDepth(root);
         
         return res;
     }
