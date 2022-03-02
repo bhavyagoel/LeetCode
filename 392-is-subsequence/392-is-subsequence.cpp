@@ -4,7 +4,7 @@ public:
         
         int i = 0; 
         
-        for(auto it : t){
+        for(auto &it : t){
             if(it == s[i]) i++; 
         }
         
