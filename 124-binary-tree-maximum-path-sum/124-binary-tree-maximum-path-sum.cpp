@@ -16,7 +16,7 @@ public:
     int helper(TreeNode* root){
         if(!root) return 0; 
         
-        int lh = max(0, helper(root->left));
+        int lh = max(0, helper(root->left));  // To avoid negative value 
         int rh = max(0, helper(root->right));
         
         res = max(res, root->val+lh+rh);
