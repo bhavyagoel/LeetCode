@@ -11,14 +11,11 @@
  */
 class Solution {
 public:
-    // map<TreeNode*, int> sum;
     map<int, int> freqSum;
     int largestFreq = 0;
     
     int subTreeSum(TreeNode* root) {
-        if(!root) return 0; 
-        // if(sum[root]) return sum[root];
-        
+        if(!root) return 0;         
         int lSum = subTreeSum(root->left);
         int rSum = subTreeSum(root->right); 
         int sum = root->val+lSum+rSum; 
@@ -26,11 +23,6 @@ public:
         largestFreq = max(largestFreq, freqSum[sum]);
         
         return sum;
-    }
-    
-    bool cmp(pair<string, int>& a, pair<string, int>& b)
-    {
-        return a.second < b.second;
     }
 
     vector<int> findFrequentTreeSum(TreeNode* root) {
