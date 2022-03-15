@@ -13,24 +13,18 @@ class Solution {
 public:
     string smallestFromLeaf(TreeNode* root) {
         string temp = "";
-        char c = 'a' + root->val; 
-        temp += c;
-        helper(root, temp); 
-        auto itr = res.begin(); 
-        
-        return *itr; 
+        helper(root, temp + char('a'+root->val)); 
+        return res; 
         
     }
     
-    set<string> res;
+    string res="~"; 
     void helper(TreeNode* root, string temp) {
         if(!root->left and !root->right) {
             reverse(temp.begin(), temp.end()); 
-            res.insert(temp); 
+            res = min(res, temp);
         }
-        
-        
-        
+                
         if(root->left) {
             char c = 'a' + root->left->val; 
             helper(root->left, temp+c);
