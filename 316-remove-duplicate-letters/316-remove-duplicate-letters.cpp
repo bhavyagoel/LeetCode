@@ -1,11 +1,11 @@
 class Solution {
 public:
     string removeDuplicateLetters(string s) {
-        map<char, int> alphaCnt; 
+        int alphaCnt[26] = {0};
         int inStk[26] = {0};
         stack<char> resStk;
         
-        for(auto &it : s ) alphaCnt[it]++;
+        for(auto &it : s ) alphaCnt[it-'a']++;
         
         int len = s.size(); 
         for(int i = 0; i < len; i++) {
@@ -14,7 +14,7 @@ public:
                 inStk[s[i]-'a']=1;
             } else{
                 if(inStk[s[i]-'a']==0) {
-                    while(!resStk.empty() and resStk.top()>s[i] and alphaCnt[resStk.top()]>0) {
+                    while(!resStk.empty() and resStk.top()>s[i] and alphaCnt[resStk.top()-'a']>0) {
                         inStk[resStk.top()-'a']=0;
                         resStk.pop(); 
                     }
@@ -22,7 +22,7 @@ public:
                     inStk[s[i]-'a']=1;
                 }
             }
-            alphaCnt[s[i]]--;
+            alphaCnt[s[i]-'a']--;
         }
         
         
