@@ -7,17 +7,16 @@ public:
         
         for(auto &it : s ) alphaCnt[it-'a']++;
         
-        int len = s.size(); 
-        for(int i = 0; i < len; i++) {
-            if(inStk[s[i]-'a']==0) {
-                while(!res.empty() and res.back()>s[i] and alphaCnt[res.back()-'a']>0) {
+        for(auto &it : s) {
+            if(inStk[it-'a']==0) {
+                while(!res.empty() and res.back()>it and alphaCnt[res.back()-'a']>0) {
                     inStk[res.back()-'a']=0;
                     res.pop_back(); 
                 }
-                res += s[i];
+                res += it;
             }
-            alphaCnt[s[i]-'a']--;
-            inStk[s[i]-'a']=1;
+            alphaCnt[it-'a']--;
+            inStk[it-'a']=1;
         }
         
         return res; 
