@@ -3,30 +3,23 @@ public:
     string removeDuplicateLetters(string s) {
         int alphaCnt[26] = {0};
         int inStk[26] = {0};
-        stack<char> resStk;
+        string res = "";
         
         for(auto &it : s ) alphaCnt[it-'a']++;
         
         int len = s.size(); 
         for(int i = 0; i < len; i++) {
             if(inStk[s[i]-'a']==0) {
-                while(!resStk.empty() and resStk.top()>s[i] and alphaCnt[resStk.top()-'a']>0) {
-                    inStk[resStk.top()-'a']=0;
-                    resStk.pop(); 
+                while(!res.empty() and res.back()>s[i] and alphaCnt[res.back()-'a']>0) {
+                    inStk[res.back()-'a']=0;
+                    res.pop_back(); 
                 }
-                resStk.push(s[i]);
+                res += s[i];
             }
             alphaCnt[s[i]-'a']--;
             inStk[s[i]-'a']=1;
         }
         
-        
-        string res = "";
-        while(!resStk.empty()){
-            res += resStk.top(); 
-            resStk.pop(); 
-        }
-        reverse(res.begin(), res.end()); 
         return res; 
     }
 };
