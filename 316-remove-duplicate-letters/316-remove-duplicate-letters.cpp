@@ -11,7 +11,6 @@ public:
         for(int i = 0; i < len; i++) {
             if(resStk.empty()) {
                 resStk.push(s[i]);
-                inStk[s[i]-'a']=1;
             } else{
                 if(inStk[s[i]-'a']==0) {
                     while(!resStk.empty() and resStk.top()>s[i] and alphaCnt[resStk.top()-'a']>0) {
@@ -19,10 +18,10 @@ public:
                         resStk.pop(); 
                     }
                     resStk.push(s[i]);
-                    inStk[s[i]-'a']=1;
                 }
             }
             alphaCnt[s[i]-'a']--;
+            inStk[s[i]-'a']=1;
         }
         
         
