@@ -11,24 +11,15 @@
  */
 class Solution {
 public:
-    map<int, int> res; 
+    vector<int>inOrder;
+    void helper(TreeNode *root){
+        if(root == NULL) return ;
+        helper(root->left);
+        inOrder.push_back(root->val);
+        helper(root->right);
+    }
     int kthSmallest(TreeNode* root, int k) {
         helper(root);
-        
-        
-        auto it = res.begin(); 
-        while(--k){
-            ++it; 
-        }
-        
-        return it->first; 
-    }
-    
-    void helper(TreeNode* root){
-        if(!root) return; 
-        
-        res[root->val] = 1;
-        helper(root->left);
-        helper(root->right);
+        return inOrder[k-1];
     }
 };
