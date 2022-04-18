@@ -17,7 +17,6 @@ public:
         long long int res = 1; 
         
         while(!pq.empty()) {
-            res %= mod; 
             res *= pq.top();
             res %= mod; 
             pq.pop(); 
