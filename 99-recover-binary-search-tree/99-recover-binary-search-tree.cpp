@@ -12,32 +12,30 @@
 class Solution {
 public:
     
-    vector<int> inorder;
+    TreeNode* pre = new TreeNode(INT_MIN); 
+    TreeNode* first = nullptr; 
+    TreeNode* sec = nullptr; 
     
     void helper(TreeNode* root) {
         if(!root) return; 
         
-        helper(root->left);
-        inorder.push_back(root->val); 
-        helper(root->right); 
-        return; 
-    }    
-    
-    int i = 0; 
-    void helper2(TreeNode* root){
-        if(!root) return; 
         
-        helper2(root->left); 
-        root->val = inorder[i++]; 
-        helper2(root->right); 
-        return; 
+        helper(root->left);
+        
+        if( !first and root->val < pre->val) first = pre; 
+        if (first and root->val < pre->val) sec = root; 
+        
+        pre = root; 
+        
+        helper(root->right); 
     }
-    void recoverTree(TreeNode* root) {
-        helper(root);
-
-        sort(inorder.begin(), inorder.end()); 
     
-        helper2(root);
+    void recoverTree(TreeNode* root) {
+        helper(root); 
+        
+        swap(first->val, sec->val);
+        
+
         
     }
 };
