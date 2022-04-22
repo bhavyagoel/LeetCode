@@ -1,30 +1,26 @@
 class MyHashMap {
 public:
-    vector<pair<int, int>> res; 
+    list<pair<int, int>> arr[100];
+    int hash = 100;
     MyHashMap() {
         
     }
     
     void put(int key, int value) {
-        bool exists = false; 
-        int removed = -1;
-        for(int i = 0; i < res.size(); i++) {
-            if(res[i].first == key) {
-                res[i].second = value; 
-                exists = true; 
+        int tmp = key % hash; 
+        for(auto &it : arr[tmp]) {
+            if(it.first == key) {
+                it.second = value;
+                return;
             }
-            
-            if(res[i].first == -1) removed = i;
         }
-        if(!exists) {
-            if(removed != -1) res[removed] = {key, value};
-            else res.push_back({key, value});
-        }
+        arr[tmp].push_back({key, value}); 
         return;
     }
     
     int get(int key) {
-        for(auto& it : res) {
+        int tmp = key % hash; 
+        for(auto it : arr[tmp]) {
             if(it.first == key) return it.second;
         }
         
@@ -32,12 +28,19 @@ public:
     }
     
     void remove(int key) {
-        for(auto& it : res) {
-            if(it.first == key) {
-                it.first = -1; 
+        
+        int tmp = key % hash; 
+        auto itr = arr[tmp].begin(); 
+        
+        while(itr != arr[tmp].end()) {
+            if(itr->first == key) {
+                arr[tmp].erase(itr);
                 return;
             }
+            
+            itr++;
         }
+        return;        
     }
 };
 
