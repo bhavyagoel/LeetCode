@@ -14,7 +14,6 @@ struct Local{
 
 
 class Solution {
-private:
 public:
     vector<int> getStrongest(vector<int>& arr, int k) {
         sort(arr.begin(), arr.end()); 
