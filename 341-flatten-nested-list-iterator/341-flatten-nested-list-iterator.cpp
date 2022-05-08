@@ -22,7 +22,6 @@ public:
     int pos = 0; 
     
     stack<NestedInteger> temp; 
-    
     void helper(vector<NestedInteger> &nestedList) {
         int n = nestedList.size(); 
         
