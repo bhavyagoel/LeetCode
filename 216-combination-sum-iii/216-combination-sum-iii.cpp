@@ -13,7 +13,7 @@ public:
                 temp.push_back(i); 
                 helper(k, n, temp, sum+i, i+1);
                 temp.pop_back(); 
-            }
+            }else break;
         }
         return; 
     }
