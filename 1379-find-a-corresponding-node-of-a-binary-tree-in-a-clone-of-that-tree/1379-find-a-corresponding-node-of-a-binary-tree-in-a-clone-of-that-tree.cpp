@@ -17,6 +17,9 @@ public:
         if(original == target) return cloned; 
         
         
-        return getTargetCopy(original->left, cloned->left, target)?getTargetCopy(original->left, cloned->left, target):getTargetCopy(original->right, cloned->right, target);
+        TreeNode* rght = getTargetCopy(original->right, cloned->right, target);
+        TreeNode* lft = getTargetCopy(original->left, cloned->left, target);
+        
+        return lft?lft:rght;
     }
 };
