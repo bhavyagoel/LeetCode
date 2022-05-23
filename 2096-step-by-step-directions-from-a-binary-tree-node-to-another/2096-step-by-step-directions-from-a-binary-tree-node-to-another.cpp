@@ -1,0 +1,52 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    /*
+    string src, dest; 
+    void path(TreeNode* root, int s, int d, string temp) {
+        if(!root) return; 
+        
+        if(root->val == s) src = temp;
+        if(root->val == d) dest = temp; 
+        
+        path(root->left, s, d, temp+'L'); 
+        path(root->right, s, d, temp+'R');
+        
+        return;
+    }
+    */
+    
+    bool path(TreeNode* root, int val, string &temp) {
+        
+        if(root->val == val) return true;
+        
+        if(root->left and path(root->left, val, temp)) temp.push_back('L');
+        else if(root->right and path(root->right, val, temp)) temp.push_back('R');
+        return !temp.empty();
+        
+    }
+    
+    string getDirections(TreeNode* root, int s, int d) {
+        
+        string src, dest; 
+        path(root, s, src);
+        path(root, d, dest);
+                
+        while(src.size() and dest.size() and src.back()==dest.back()) {
+            src.pop_back(); 
+            dest.pop_back(); 
+        }
+                
+        return string(src.size(), 'U') + string(rbegin(dest), rend(dest));
+    }
+};
