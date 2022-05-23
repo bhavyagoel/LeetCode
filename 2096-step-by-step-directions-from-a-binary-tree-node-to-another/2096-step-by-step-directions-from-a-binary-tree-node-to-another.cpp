@@ -58,9 +58,7 @@ public:
         path(root, s, d, temp);
         int i = 0; 
         while(i<src.size() and i<dest.size() and src[i]==dest[i]) i++;
-        
-        // cout<<src<<" "<<dest<<endl;
-        
+                
         return string(src.size()-i, 'U') + dest.substr(i, dest.size());
     }
 };
