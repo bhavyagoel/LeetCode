@@ -11,21 +11,27 @@
  */
 class Solution {
 public:
-    /*
+    
     string src, dest; 
-    void path(TreeNode* root, int s, int d, string temp) {
+    void path(TreeNode* root, int s, int d, string& temp) {
         if(!root) return; 
-        
         if(root->val == s) src = temp;
-        if(root->val == d) dest = temp; 
+        if(root->val == d) dest = temp;
+ 
         
-        path(root->left, s, d, temp+'L'); 
-        path(root->right, s, d, temp+'R');
+        temp.push_back('L');
+        path(root->left, s, d, temp); 
+        temp.pop_back(); 
+        
+        temp.push_back('R');
+        path(root->right, s, d, temp); 
+        temp.pop_back(); 
         
         return;
     }
-    */
+
     
+    /*
     bool path(TreeNode* root, int val, string &temp) {
         
         if(root->val == val) return true;
@@ -35,10 +41,9 @@ public:
         return !temp.empty();
         
     }
-    
+    */
     string getDirections(TreeNode* root, int s, int d) {
-        
-        string src, dest; 
+        /*
         path(root, s, src);
         path(root, d, dest);
                 
@@ -48,5 +53,14 @@ public:
         }
                 
         return string(src.size(), 'U') + string(rbegin(dest), rend(dest));
+        */
+        string temp;
+        path(root, s, d, temp);
+        int i = 0; 
+        while(i<src.size() and i<dest.size() and src[i]==dest[i]) i++;
+        
+        // cout<<src<<" "<<dest<<endl;
+        
+        return string(src.size()-i, 'U') + dest.substr(i, dest.size());
     }
 };
