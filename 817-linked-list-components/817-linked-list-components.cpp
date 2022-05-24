@@ -18,9 +18,7 @@ public:
         int res = 0; 
         while(head) {
             if(mp[head->val]==1) {
-                while(head and mp[head->val]==1) {
-                    head = head->next; 
-                }
+                while(head and mp[head->val]==1) head = head->next; 
                 res++;
             }
             if(head) head = head->next; 
