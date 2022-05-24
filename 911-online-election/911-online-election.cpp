@@ -1,11 +1,12 @@
 class TopVotedCandidate {
 public:
-    map<int, int> votes; 
+    int votes[50001] = {0}; 
     vector<pair<int, int>> winner; 
     int currWinner = -1; 
     
     TopVotedCandidate(vector<int>& p, vector<int>& t) {
         int n = p.size(); 
+        currWinner = p[0];
         for(int i = 0; i < n; i++) {
             votes[p[i]]++;
             if(votes[p[i]] >= votes[currWinner]) currWinner = p[i];
