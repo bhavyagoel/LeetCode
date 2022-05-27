@@ -34,10 +34,10 @@ public:
         
         if(!root) return 0; 
         
-        int left = heightLeft(root);
-        int right = heightRight(root);
+        int left = heightLeft(root->left);
+        int right = heightRight(root->right);
         
-        if(left == right) return pow(2, left) - 1;
+        if(left == right) return pow(2, left+1) - 1;
         return 1 + countNodes(root->left) + countNodes(root->right);
     }
 };
