@@ -18,9 +18,7 @@ public:
                 
                 if(i>=0) s[i] = '1';
                 else {
-                    reverse(s.begin(), s.end()); 
-                    s.push_back('1');
-                    reverse(s.begin(), s.end()); 
+                    s.insert(0 , "1");
                 }
                 res++;
             }
