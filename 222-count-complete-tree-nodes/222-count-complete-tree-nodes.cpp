@@ -37,7 +37,6 @@ public:
         int left = heightLeft(root);
         int right = heightRight(root);
         
-        
         if(left == right) return pow(2, left) - 1;
         return 1 + countNodes(root->left) + countNodes(root->right);
     }
