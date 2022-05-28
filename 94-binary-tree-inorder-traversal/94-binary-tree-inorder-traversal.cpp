@@ -27,9 +27,9 @@ public:
                     prev->right = root; 
                     root = root->left; 
                 }else{
-                    prev->right = nullptr; 
                     res.push_back(root->val);
                     root = root->right; 
+                    prev->right = nullptr; 
                 }
             }
         }
