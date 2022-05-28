@@ -19,9 +19,10 @@ public:
     int preInd = 0, postInd = 0; 
     TreeNode* build(vector<int>& pr, vector<int>& po) {
         TreeNode* root = new TreeNode(pr[preInd++]);
-        
+                
         if(root->val != po[postInd]) root->left = build(pr, po);
         if(root->val != po[postInd]) root->right = build(pr, po); 
+        
         postInd++; 
         return root; 
     }
