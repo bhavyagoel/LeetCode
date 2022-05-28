@@ -9,12 +9,9 @@
  */
 class Codec {
 public:
-    TreeNode* glob; 
+
     // Encodes a tree to a single string.
     string serialize(TreeNode* root) {
-        glob = root; 
-        
-        // string res = "[";
         string res = "";
         queue<TreeNode*> q; 
         q.push(root); 
@@ -38,9 +35,6 @@ public:
             
             
         }
-        // res.pop_back(); 
-        // res += ']';
-        cout<<res<<endl;
         return res; 
     }
 
