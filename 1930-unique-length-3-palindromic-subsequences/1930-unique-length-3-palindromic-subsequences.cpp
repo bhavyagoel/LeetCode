@@ -1,4 +1,3 @@
-/*
 class Solution {
 public:
     int countPalindromicSubsequence(string s) {
@@ -38,8 +37,9 @@ public:
         return res;
     }
 };
-*/
 
+
+/*
 // Can be solved by calculating first and last occurence of each alphabet, and then counting the unique alphabets between those
 class Solution {
 public:
@@ -55,3 +55,4 @@ public:
         return res;
     }
 };
+*/
