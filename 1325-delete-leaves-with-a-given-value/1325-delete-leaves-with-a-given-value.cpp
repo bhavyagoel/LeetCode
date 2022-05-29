@@ -16,7 +16,7 @@ public:
         if(root->val == target and !root->left and !root->right) return nullptr;
         return root; 
     }
-    
+    /*
     void dfs(TreeNode* root, int t) {
         if (!root) return; 
         
@@ -29,6 +29,18 @@ public:
             root->right = nullptr; 
         
         return;
+    }
+    */
+    TreeNode* dfs(TreeNode* root, int t) {
+        if (!root) return nullptr; 
+        TreeNode* temp = root; 
+        TreeNode* left = dfs(root->left, t);
+        TreeNode* right = dfs(root->right, t);
         
+        temp->right = right; 
+        temp->left = left; 
+        
+        if(root->val == t and !root->left and !root->right) return nullptr;
+        return temp; 
     }
 };
