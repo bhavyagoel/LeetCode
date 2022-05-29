@@ -55,9 +55,7 @@ public:
         dfs(root->left, val);
         dfs(root->right, val);
         
-        // cout<<"\nRoot:"<<root->val<<" "<<depth<<endl;
         if(!root->left and !root->right) res += (__builtin_popcount(val)<2);
-        // cout<<endl;
         return;
     }
     
