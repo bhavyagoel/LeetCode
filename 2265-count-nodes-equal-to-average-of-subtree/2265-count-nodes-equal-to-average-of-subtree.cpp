@@ -25,9 +25,7 @@ public:
         
         int cnt = left.second + right.second + 1; 
         int sum = left.first + right.first + root->val;
-        
-        // cout<<sum<<" "<<cnt<<endl;
-        
+                
         if(root->val == sum/cnt) res += 1; 
         return {sum, cnt};
     }
