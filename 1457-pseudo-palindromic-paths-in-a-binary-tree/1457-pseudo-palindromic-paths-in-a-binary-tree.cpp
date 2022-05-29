@@ -12,12 +12,14 @@
 class Solution {
 public:
     int pseudoPalindromicPaths (TreeNode* root) {
-        vector<int> cnt(10, 0);
-        dfs(root, cnt, 1); 
+        // vector<int> cnt(10, 0);
+        // dfs(root, cnt, 1); 
+        dfs(root, 0);
         return res; 
     }
     
     int res = 0; 
+    /*
     void dfs(TreeNode* root, vector<int> cnt, int depth) {
         if(!root) return;
         cnt[root->val]++;
@@ -44,4 +46,19 @@ public:
         // cout<<endl;
         return;
     }
+    */
+    
+    void dfs(TreeNode* root, int val) {
+        if(!root) return;
+        
+        val ^= (1 << root->val);
+        dfs(root->left, val);
+        dfs(root->right, val);
+        
+        // cout<<"\nRoot:"<<root->val<<" "<<depth<<endl;
+        if(!root->left and !root->right) res += (__builtin_popcount(val)<2);
+        // cout<<endl;
+        return;
+    }
+    
 };
