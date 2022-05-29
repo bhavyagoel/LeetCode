@@ -1,0 +1,4 @@
+"aabca"
+"adc"
+"bbcbaba"
+"uuuuu"
