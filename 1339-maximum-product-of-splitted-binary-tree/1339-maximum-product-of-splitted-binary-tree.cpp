@@ -15,20 +15,11 @@ public:
     long res = INT_MIN; 
     int modulo = 1e9 + 7; 
     int maxProduct(TreeNode* root) {
-        dfsSum(root); 
+        sum = dfs(root); 
         dfs(root); 
         return res%modulo; 
     }
-    
-    void dfsSum(TreeNode* root) {
-        if(!root) return; 
         
-        sum += root->val; 
-        dfsSum(root->left); 
-        dfsSum(root->right); 
-        return; 
-    }
-    
     long dfs(TreeNode* root) {
         if(!root) return 0; 
         
