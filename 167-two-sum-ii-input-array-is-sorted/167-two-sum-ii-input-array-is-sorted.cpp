@@ -1,6 +1,22 @@
 class Solution {
 public:
     vector<int> twoSum(vector<int>& num, int target) {
+        int lo = 0, hi = num.size()-1; 
+        
+        while(lo<=hi) {
+            if(target == num[lo]+num[hi]) break;
+            else if (target > num[lo]+num[hi]) lo++;
+            else hi--;
+        }
+        
+        return {lo+1, hi+1};
+    }
+};
+
+/*
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& num, int target) {
         
         for(int i = 0; i < num.size(); i++) {
             
@@ -22,3 +38,4 @@ public:
         return {0,0};
     }
 };
+*/
