@@ -16,7 +16,7 @@ public:
             }
             
             if(left == num[lo]) return {i+1, lo+1};
-            // if(left == num[hi]) return {i+1, hi+1};
+            if(left == num[hi]) return {i+1, hi+1};
         }
         
         return {0,0};
