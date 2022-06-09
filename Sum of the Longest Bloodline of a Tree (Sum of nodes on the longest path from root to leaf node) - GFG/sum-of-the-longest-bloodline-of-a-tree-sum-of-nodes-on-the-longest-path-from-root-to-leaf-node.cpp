@@ -128,8 +128,8 @@ public:
     int ans = 0; 
     int currDepth = 0;
     
-    int dfs(Node* root, int depth, int sum) {
-        if(!root) return 0;
+    void dfs(Node* root, int depth, int sum) {
+        if(!root) return;
         
         dfs(root->left, depth+1, root->data + sum);
         dfs(root->right, depth+1, root->data + sum);
@@ -142,7 +142,7 @@ public:
         }
 
         
-        return sum;
+        return;
     }
 };
 
