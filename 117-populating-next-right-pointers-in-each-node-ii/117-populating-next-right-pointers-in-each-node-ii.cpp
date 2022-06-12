@@ -19,8 +19,33 @@ public:
 class Solution {
 public:
     Node* connect(Node* root) {
-        dfs(root);
-        dfs(root);
+        if(!root) return nullptr;
+        queue<Node*> q; 
+        q.push(root); 
+        while(!q.empty()) {
+            int n = q.size();
+            while(n--){
+                Node* prev = q.front(); 
+                q.pop(); 
+                Node* curr = nullptr; 
+                if(n) curr = q.front(); 
+
+                prev->next = curr; 
+                if(prev->left) q.push(prev->left);
+                if(prev->right) q.push(prev->right);
+            }
+            
+        }
+        
+        return root;
+    }
+};
+
+/*
+
+class Solution {
+public:
+    Node* connect(Node* root) {
         dfs(root);
         dfs(root);
         dfs(root);
@@ -73,3 +98,4 @@ public:
         dfs(root->right);
     }
 };
+*/
