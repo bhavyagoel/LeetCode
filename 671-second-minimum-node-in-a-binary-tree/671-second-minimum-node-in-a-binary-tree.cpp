@@ -13,11 +13,10 @@ class Solution {
 public:
     int findSecondMinimumValue(TreeNode* root) {
         dfs(root);
-        return flag?second:-1;
+        return second==LLONG_MAX?-1:second;
     }
     
     long long first = LLONG_MAX, second = LLONG_MAX;
-    bool flag = false;
     
     void dfs(TreeNode* root){
         if(!root) return; 
@@ -26,10 +25,8 @@ public:
             second = first; 
             first = root->val;
         } 
-        else if (root->val < second and root->val != first) {
-            second = root->val;
-            flag = true;
-        }
+        else if (root->val < second and root->val != first) second = root->val;
+        
         
         dfs(root->left);
         dfs(root->right); 
