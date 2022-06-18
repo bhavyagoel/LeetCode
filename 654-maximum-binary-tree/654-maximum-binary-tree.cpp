@@ -19,7 +19,6 @@ public:
         if(start > end) return nullptr;         
         int it = max_element(nums.begin()+start, nums.begin()+end+1) - nums.begin();
         
-        // cout<<start<<" "<<end<<" "<<nums[it]<<" "<<it<<endl;
         TreeNode* temp = new TreeNode(nums[it]);
         temp->left = dfs(nums, start, it-1);
         temp->right = dfs(nums, it+1, end);
