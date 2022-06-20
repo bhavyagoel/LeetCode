@@ -12,8 +12,10 @@
 class Solution {
 public:
     TreeNode* searchBST(TreeNode* root, int val) {
-        dfs(root, val); 
-        return res;
+        while(root and root->val != val){
+            root = root->val > val ? root->left : root->right;
+        }
+        return root;
     }
     TreeNode* res; 
     void dfs(TreeNode* root, int val) {
