@@ -15,8 +15,8 @@ public:
     bool helper(TreeNode* root, long mn, long mx) {
         if(!root) return true; 
                 
-        bool left = helper(root->left, mn, min(mx, (long)root->val));
-        bool right = helper(root->right, max(mn, (long)root->val), mx);
+        bool left = helper(root->left, mn, root->val);
+        bool right = helper(root->right, root->val, mx);
         
         
         if(root->val <= mn or root->val >= mx) return false;
