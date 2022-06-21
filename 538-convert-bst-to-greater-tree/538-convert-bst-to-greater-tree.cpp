@@ -12,7 +12,7 @@
 class Solution {
 public:
     TreeNode* convertBST(TreeNode* root) {
-        // change every node to sum of left subtree
+        // change every node to sum of left subtree, reverse inorder
         
         dfs(root);
         return root;
