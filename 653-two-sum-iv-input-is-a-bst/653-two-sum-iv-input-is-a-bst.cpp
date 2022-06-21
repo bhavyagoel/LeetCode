@@ -18,5 +18,4 @@ public:
         s.insert(root->val);
         return findTarget(root->left, k) || findTarget(root->right, k);
     }
-
 };
