@@ -22,11 +22,11 @@
 class Solution {
 public:
     TreeNode* sortedListToBST(ListNode* head) {
-        return dfs(head, INT_MAX); 
+        return dfs(head); 
     }
     
     
-    TreeNode* dfs(ListNode* head, int ub) {
+    TreeNode* dfs(ListNode* head) {
         if(!head) return nullptr; 
         
         ListNode* fast = head; 
@@ -45,10 +45,10 @@ public:
         
         TreeNode* root = new TreeNode(curr->val); 
         
-        if(prev) root->left = dfs(head, root->val);
-        else root->left = dfs(prev, root->val); 
+        if(prev) root->left = dfs(head);
+        else root->left = dfs(prev); 
         
-        root->right = dfs(next, root->val); 
+        root->right = dfs(next); 
         return root; 
     }
 };
