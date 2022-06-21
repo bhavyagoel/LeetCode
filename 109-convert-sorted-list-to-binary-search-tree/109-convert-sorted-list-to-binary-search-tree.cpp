@@ -38,8 +38,6 @@ public:
             slow = slow->next; 
             fast = fast->next->next; 
         }
-        // cout<<slow->val<<" "<<fast->val<<endl;
-
         
         ListNode* curr = slow; 
         ListNode* next = slow->next;
