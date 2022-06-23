@@ -29,7 +29,6 @@ public:
                 totTime += c[i][0];
                 res += 1;
             }else if(pq.size()){
-                cout<<i<<endl;
                 auto top = pq.top(); 
                 if(top.first > c[i][0]){
                     pq.pop(); 
