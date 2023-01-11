@@ -1,7 +1,6 @@
 class Solution {
 public:
     int maxPoints(vector<vector<int>>& points) {
-        
         if(points.size()==1)
             return 1; 
         
@@ -19,8 +18,7 @@ public:
 
                 maxCnt = max(slpCnt[slope], maxCnt);
             }
-        }
-        
+        } 
         return maxCnt+1;
     }
 };
